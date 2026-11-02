@@ -22,7 +22,7 @@
 You step into a lift and, as it starts to rise, the floor seems to push harder on your feet. When it slows near the top you feel a little lighter. Nothing about you has changed, and gravity has not changed either. What has? And how can a designer make a ride quick without making the push on your feet unpleasant?
 
 ## B. Concept and theory
-A lift ride is simplest to describe with a speed-time graph. The lift speeds up at a constant acceleration a until it reaches the top speed v, travels at v, then slows down at the same rate. The graph is a trapezoid. The slope of the graph is the acceleration and the area under it is the distance. Speeding up to v takes v / a seconds and covers v^2 / (2 a) metres, slowing down is the same, so a ride of distance d takes d / v + v / a seconds as long as d is at least v^2 / a. If the distance is shorter, the lift never reaches v. You feel the force of the floor on your feet, the apparent weight N. Newton's second law for you says net force = mass x acceleration, and the net force is N upward minus your weight m g downward, so N = m (g + a). When the lift accelerates upward (speeding up while going up, or slowing down while going down) a is positive and you feel heavier. When the acceleration points down you feel lighter. At constant speed a = 0 and N = m g. Only the acceleration matters, never the speed.
+A lift ride is simplest to describe with a speed-time graph. The lift speeds up at a constant acceleration a until it reaches the top speed v, travels at v, then slows down at the same rate. The graph is a trapezoid. The slope of the graph is the acceleration and the area under it is the distance. Speeding up to v takes v / a seconds and covers v^2 / (2 a) metres, slowing down is the same, so a ride of distance d takes d / v + v / a seconds as long as d is at least v^2 / a (the distance needed to speed up to v and slow down again). If the distance is shorter, the lift never reaches v: it speeds up for half the distance and slows down for the other half, and the ride takes 2 sqrt(d / a) seconds. You feel the force of the floor on your feet, the apparent weight N. Newton's second law for you says net force = mass x acceleration, and the net force is N upward minus your weight m g downward, so N = m (g + a). When the lift accelerates upward (speeding up while going up, or slowing down while going down) a is positive and you feel heavier. When the acceleration points down you feel lighter. At constant speed a = 0 and N = m g. Only the acceleration matters, never the speed.
 
 | Symbol | Meaning | Unit |
 |---|---|---|
@@ -48,15 +48,15 @@ $$ d_{\text{accelerate}}=\frac{v^2}{2a},\qquad t_{\text{accelerate}}=\frac{v}{a}
 $$ N-mg=ma\;\Rightarrow\;N=m\,(g+a) $$
 
 ## C. Visual explanation
-The first figure is a speed-time graph of a 21 m ride with a top speed of 2 m/s and an acceleration of 1 m/s^2: a trapezoid with a 2 s rise, an 8.5 s flat top and a 2 s fall, 12.5 s in total, whose shaded area is 21 m. The second figure shows the floor force on a 60 kg person during the same ride: 649 N while speeding up (above the 589 N true weight), 589 N while cruising and 529 N while slowing down.
-
-![Floor force on a 60 kg person: heavier while speeding up, lighter while slowing down.](../../docs/figures/s01_apparent_weight.png)
-
-*Floor force on a 60 kg person: heavier while speeding up, lighter while slowing down.*
+The first figure is the speed-time graph of a 21 m ride with a top speed of 2 m/s and an acceleration of 1 m/s^2: a trapezoid with a 2 s rise, an 8.5 s flat top and a 2 s fall, 12.5 s in total, whose shaded area is 21 m. The second figure shows the floor force on a 60 kg person during the same ride: 649 N while speeding up (above the 589 N true weight), 589 N while cruising and 529 N while slowing down.
 
 ![Speed-time graph of a 21 m ride: slope is acceleration, shaded area is distance.](../../docs/figures/s01_speed_time.png)
 
 *Speed-time graph of a 21 m ride: slope is acceleration, shaded area is distance.*
+
+![Floor force on a 60 kg person: heavier while speeding up, lighter while slowing down.](../../docs/figures/s01_apparent_weight.png)
+
+*Floor force on a 60 kg person: heavier while speeding up, lighter while slowing down.*
 
 ## D. Interactive simulation
 Run the lesson (`python start.py 1`), then open the live app: [Session 1: a lift ride and the force on your feet](https://krunalpanchal1995.github.io/openelevator/session-01/) (or `app.html` in this folder). Move the ride-progress slider and watch the car rise in the shaft and the force bar grow and shrink. Then open the speed graph and the force graph and change the acceleration.
@@ -73,7 +73,7 @@ Run the lesson (`python start.py 1`), then open the live app: [Session 1: a lift
 
 **Answer.** N = 648.6 N while speeding up (588.6 N at rest, 528.6 N while slowing down).
 
-**Experiment.** Stand on a bathroom scale in a lift (or use a phone app that shows acceleration) and watch the reading as the lift starts and stops. The reading should rise by about 10 percent for a = 1 m/s^2 and fall by the same amount at the end, and return to your normal weight at steady speed. Typical lifts accelerate less than 1 m/s^2, so the changes you see will be smaller. Differences between model and reality: a real scale reacts slowly, the real acceleration is not a perfect step, and the lift may swing a little.
+**Experiment.** Stand on a bathroom scale in a lift (or use a phone app that shows acceleration) and watch the reading as the lift starts and stops. A scale shows mass, so it reads m (g + a) / g: your normal mass times 1 + a / g. The reading should rise by about 10 percent for a = 1 m/s^2 and fall by the same amount at the end, and return to your normal weight at steady speed. Typical lifts accelerate less than 1 m/s^2, so the changes you see will be smaller. Differences between model and reality: a real scale reacts slowly, the real acceleration is not a perfect step, and the lift may swing a little.
 
 ## F. Assessment and design challenge
 **Question type A: Conceptual.** A lift is moving downward at a steady speed and then begins to slow down to stop at the ground floor. Do you feel heavier, lighter or the same? Explain without using the word speed.
@@ -91,6 +91,7 @@ Slowing down while moving down means the velocity changes toward up. Which way d
 You feel heavier. The velocity is downward and shrinking, so the change of velocity (the acceleration) points upward. With a upward and positive, N = m (g + a) is larger than m g. What matters is the direction of the acceleration, not the direction of the motion.
 
 </details>
+
 **Question type B: Numerical.** A 75 kg person stands in a lift that speeds up upward at 1.5 m/s^2. Find the floor force and the percentage change from the person's weight at rest.
 
 <details>
@@ -106,6 +107,7 @@ N = m (g + a) with g = 9.81 m/s^2.
 N = 75 * (9.81 + 1.5) = 75 * 11.31 = 848.25 N, about 848 N. Weight at rest = 75 * 9.81 = 735.75 N. Change = 848.25 / 735.75 = 1.153, so 15.3 percent heavier. Unit check: kg * m/s^2 = N.
 
 </details>
+
 **Question type C: Graph and simulation interpretation.** On the speed-time graph of the 21 m ride (top speed 2 m/s, rise over 2 s, flat for 8.5 s), what is the acceleration and how can you check that the distance is 21 m?
 
 <details>
@@ -121,6 +123,7 @@ Slope = rise over run. Area = two triangles and a rectangle.
 Slope of the rising part = (2 - 0) / 2 = 1.0 m/s^2. Area: two triangles of 0.5 * 2 * 2 = 2 m each (4 m) plus a rectangle 2 m/s * 8.5 s = 17 m, total 21 m, which matches the distance.
 
 </details>
+
 **Question type D: Design and optimisation challenge.** Design: the 21 m ride must take less than 11 s and the floor force must stay within 15 percent of the person's weight (a <= 1.47 m/s^2). Choose a and v, check d >= v^2 / a, and give the ride time. Why not simply choose a very large v?
 
 <details>
@@ -133,7 +136,7 @@ Try a = 1.4 m/s^2 and a few values of v in T = d / v + v / a.
 <details>
 <summary>Step-by-step solution</summary>
 
-Take a = 1.4 m/s^2 (a/g = 0.143, so 14.3 percent). With v = 3 m/s: v^2 / a = 6.4 m, which is less than 21 m, so the lift reaches full speed. T = 21 / 3 + 3 / 1.4 = 7.0 + 2.14 = 9.14 s, below 11 s. A very large v is not free: the lift needs a stronger motor, more shaft height to slow down safely, and passengers dislike very high speed. With a = 1.4 the time stays under 11 s only for v above about 2.2 m/s, so a v of 2.5 to 4 m/s is a sensible range. Assumptions: constant acceleration, no jerk limit (Session 2 adds it).
+Take a = 1.4 m/s^2 (a/g = 0.143, so 14.3 percent). With v = 3 m/s: v^2 / a = 6.4 m, which is less than 21 m, so the lift reaches full speed. T = 21 / 3 + 3 / 1.4 = 7.0 + 2.14 = 9.14 s, below 11 s. A very large v is not free: the lift needs a stronger motor, more shaft height to slow down safely, and passengers dislike very high speed. With a = 1.4 the time stays under 11 s only for v above about 2.23 m/s (solve 21 / v + v / 1.4 = 11), so a v of 2.5 to 4 m/s is a sensible range. Assumptions: constant acceleration, no jerk limit (Session 2 adds it).
 
 </details>
 

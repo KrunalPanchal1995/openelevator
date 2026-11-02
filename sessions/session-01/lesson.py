@@ -5,7 +5,8 @@ Run:  python start.py 1
 # %% [markdown]
 # # Session 1: a lift goes up and down
 # **A. Real-world problem.** You step into a lift and the floor seems to push harder on your feet for a
-# moment as it starts to rise, and softer when it starts to go down. Nothing about you changed. What did?
+# moment as it starts to rise, and less hard when it starts to go down. Your mass did not change and
+# gravity did not change. What did?
 #
 # **Plan.** (1) draw the speed-time graph of a ride, (2) find the acceleration from its slope and the
 # distance from its area, (3) work out the force of the floor on your feet (the "apparent weight").
@@ -29,7 +30,8 @@ G = 9.81   # m/s^2, acceleration of gravity
 # - The **area** under the graph is the distance travelled (m).
 #
 # With cruise speed v and acceleration a, speeding up takes v / a seconds and covers v^2 / (2a) metres.
-# So for a total distance d (if the lift reaches the cruise speed): cruise distance = d - v^2 / a.
+# Speeding up and slowing down together use v^2 / a metres, so for a total distance d (if the lift
+# reaches the cruise speed) the cruise distance is d - v^2 / a and the cruise time is that divided by v.
 
 # %%
 def ride_times(d, v, a):
@@ -41,6 +43,7 @@ def ride_times(d, v, a):
     if d >= v ** 2 / a:
         t_acc = v / a
         return t_acc, (d - v ** 2 / a) / v, t_acc
+    # half the distance speeding up: d / 2 = a t^2 / 2, so t = sqrt(d / a)
     t_acc = np.sqrt(d / a)
     return t_acc, 0.0, t_acc
 
@@ -60,6 +63,7 @@ def speed_at(t, d, v, a):
 
 
 def travel_time(d, v, a):
+    """Total ride time (s): accelerate + cruise + decelerate."""
     return sum(ride_times(d, v, a))
 
 
@@ -99,6 +103,7 @@ if __name__ == "__main__":
     t = np.linspace(0, T, 400)
     speed = np.array([speed_at(x, d, v, a) for x in t])
     t_acc, t_cr, t_dec = ride_times(d, v, a)
+    # acceleration during each part: +a while speeding up, 0 while cruising, -a while slowing down
     acc = np.where(t < t_acc, a, np.where(t < t_acc + t_cr, 0.0, -a))
     print(f"ride of {d} m at {v} m/s: accelerate {t_acc:.1f} s, cruise {t_cr:.1f} s, decelerate {t_dec:.1f} s, total {T:.1f} s")
     print(f"weight at rest {m * G:.0f} N, while speeding up {apparent_weight(m, a):.0f} N, "
@@ -116,7 +121,7 @@ if __name__ == "__main__":
 
     fig2, ax2 = plt.subplots(figsize=(6, 4))
     ax2.plot(t, [apparent_weight(m, x) for x in acc], color="tab:red")
-    ax2.axhline(m * G, color="gray", ls=":", label="true weight 589 N")
+    ax2.axhline(m * G, color="gray", ls=":", label=f"true weight {m * G:.0f} N")
     ax2.set_xlabel("time (s)")
     ax2.set_ylabel("floor force on a 60 kg person (N)")
     ax2.set_title("Heavier when speeding up, lighter when slowing down")
