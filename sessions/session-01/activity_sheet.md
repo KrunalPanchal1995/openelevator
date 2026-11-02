@@ -48,3 +48,5 @@ Answer: ______________________________________________
 - [ ] I can explain the key idea to a friend
 - [ ] My checkpoint printed PASS
 - [ ] I tried one change of my own and wrote what happened: ____________________
+
+Going further: try the bathroom-scale experiment in [scale_experiment.md](scale_experiment.md).
